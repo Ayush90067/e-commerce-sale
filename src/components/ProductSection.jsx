@@ -1,13 +1,47 @@
-import { useState } from "react";
-import products from "../data/products";
+import { useEffect, useState } from "react";
+
 import ProductCard from "./ProductCard";
+
 import "./ProductSection.css";
 
+import { getProducts } from "../services/api";
+
 function ProductSection() {
+
+    const [products, setProducts] = useState([]);
+
+    const [loading, setLoading] = useState(true);
+
+    const [error, setError] = useState("");
 
     const [search, setSearch] = useState("");
 
     const [category, setCategory] = useState("All");
+
+    // FETCH PRODUCTS
+
+    useEffect(() => {
+
+        fetchProducts();
+
+    }, []);
+
+    const fetchProducts = async () => {
+
+        try {
+
+            const response = await getProducts();
+
+            setProducts(response.data);
+
+        } catch (err) {
+
+            setError("Failed To Load Products");
+        } finally {
+
+            setLoading(false);
+        }
+    };
 
     // FILTER PRODUCTS
 
@@ -25,13 +59,27 @@ function ProductSection() {
         return matchesSearch && matchesCategory;
     });
 
+    // LOADING
+
+    if (loading) {
+
+        return <h1>Loading Products...</h1>;
+    }
+
+    // ERROR
+
+    if (error) {
+
+        return <h1>{error}</h1>;
+    }
+
     return (
 
         <section className="products">
 
             <h2>Featured Products</h2>
 
-            {/* SEARCH */}
+            {/* FILTERS */}
 
             <div className="filter-section">
 
@@ -74,6 +122,8 @@ function ProductSection() {
                 </select>
 
             </div>
+
+            {/* PRODUCTS */}
 
             <div className="product-grid">
 
