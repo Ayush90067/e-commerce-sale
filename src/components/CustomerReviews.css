@@ -1,0 +1,135 @@
+/* ===========================
+   CUSTOMER REVIEWS
+=========================== */
+
+.reviews-section {
+  padding: 80px 0;
+  background: #f8fafc;
+}
+
+.reviews-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  text-align: center;
+}
+
+.reviews-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 15px;
+}
+
+.reviews-title span {
+  color: #f59e0b;
+}
+
+.reviews-subtitle {
+  max-width: 700px;
+  margin: 0 auto 60px;
+  color: #64748b;
+  line-height: 1.8;
+}
+
+/* ===========================
+   GRID
+=========================== */
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+/* ===========================
+   CARD
+=========================== */
+
+.review-card {
+  background: white;
+  border-radius: 18px;
+  padding: 30px;
+  text-align: left;
+  transition: 0.3s;
+  border-top: 5px solid #f59e0b;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.review-card:hover {
+  transform: translateY(-8px);
+}
+
+.review-rating {
+  color: #f59e0b;
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+}
+
+.review-text {
+  color: #475569;
+  line-height: 1.8;
+  margin-bottom: 25px;
+}
+
+/* ===========================
+   USER INFO
+=========================== */
+
+.review-user {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.review-avatar {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: #f59e0b;
+  color: white;
+  font-weight: bold;
+  font-size: 1.3rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.review-user h4 {
+  margin-bottom: 5px;
+  color: #111827;
+}
+
+.review-user span {
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media (max-width: 992px) {
+  .reviews-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .reviews-title {
+    font-size: 2.4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .reviews-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .reviews-title {
+    font-size: 2rem;
+  }
+
+  .review-card {
+    padding: 25px;
+  }
+}

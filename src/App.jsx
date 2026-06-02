@@ -5,8 +5,8 @@ import Cart from "./pages/Cart";
 import Admin from "./pages/Admin";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-
-
+import FeaturedProducts from "./components/FeaturedProducts";
+import Navbar from "./components/Navbar";
 
 function App() {
 
@@ -26,6 +26,11 @@ function App() {
         <Route path="/admin" element={<Admin />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route 
+        path="/products" 
+        element={<FeaturedProducts />}>
+        </Route>
+      
       </Routes>
 
     </BrowserRouter>

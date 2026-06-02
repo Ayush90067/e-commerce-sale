@@ -12,14 +12,16 @@ function Navbar() {
         <nav className="navbar">
 
             <div className="logo">
-                ShopEasy
+                MaKan
             </div>
 
             <ul className="nav-links">
-                <Link to="/">
-                 <li>Home</li>
+                <Link to="/products">
+                 <li>Shop</li>
                  </Link>
-                <li>Products</li>
+                <a href="#categories">
+                <li>Service</li>
+                </a>
                 <Link to="/login">
                     <li>Login</li>
                 </Link>

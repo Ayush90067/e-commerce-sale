@@ -1,0 +1,191 @@
+/* ==========================
+   CATEGORIES SECTION
+========================== */
+
+.categories-section {
+  padding: 70px 0;
+  background: #f8fafc;
+}
+
+.categories-container {
+  width: 95%;
+  max-width: 1400px;
+  margin: auto;
+}
+
+.categories-title {
+  text-align: center;
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 15px;
+}
+
+.categories-title span {
+  color: #f59e0b;
+}
+
+.categories-subtitle {
+  text-align: center;
+  color: #64748b;
+  max-width: 700px;
+  margin: 0 auto 50px;
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+/* ==========================
+   GRID
+========================== */
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+/* ==========================
+   CARD
+========================== */
+
+.category-card {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  border-radius: 18px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  transition: all 0.4s ease;
+}
+
+.category-card:hover {
+  transform: translateY(-8px);
+}
+
+/* ==========================
+   IMAGE
+========================== */
+
+.category-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.category-card:hover .category-image {
+  transform: scale(1.08);
+}
+
+/* ==========================
+   OVERLAY
+========================== */
+
+.category-overlay {
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    to top,
+    rgba(15, 23, 42, 0.95),
+    rgba(15, 23, 42, 0.15)
+  );
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  padding: 25px;
+}
+
+.category-overlay h3 {
+  color: #ffffff;
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.category-overlay button {
+  width: fit-content;
+  padding: 10px 22px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #f59e0b;
+  color: #ffffff;
+
+  font-weight: 600;
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.category-overlay button:hover {
+  background: #d97706;
+}
+
+/* ==========================
+   TABLET
+========================== */
+
+@media (max-width: 992px) {
+  .categories-title {
+    font-size: 2.4rem;
+  }
+
+  .categories-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+
+  .category-card {
+    height: 240px;
+  }
+}
+
+/* ==========================
+   MOBILE
+========================== */
+
+@media (max-width: 768px) {
+  .categories-section {
+    padding: 50px 0;
+  }
+
+  .categories-title {
+    font-size: 2rem;
+  }
+
+  .categories-subtitle {
+    margin-bottom: 35px;
+  }
+
+  .categories-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .category-card {
+    height: 220px;
+  }
+
+  .category-overlay h3 {
+    font-size: 1.3rem;
+  }
+}
+
+/* ==========================
+   EXTRA LARGE SCREENS
+========================== */
+
+@media (min-width: 1400px) {
+  .categories-container {
+    max-width: 1500px;
+  }
+
+  .category-card {
+    height: 300px;
+  }
+}
