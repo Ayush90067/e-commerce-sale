@@ -1,82 +1,76 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import API from "../services/api";
-import "./Auth.css";
+import api from "../services/api";
 
 function Login() {
 
-    const navigate = useNavigate();
+  const [email,setEmail] = useState("");
+  const [password,setPassword] = useState("");
 
-    const [form, setForm] = useState({
-        email: "",
-        password: ""
-    });
+  const handleLogin = async (e) => {
 
-    const [error, setError] = useState("");
+    e.preventDefault();
 
-    const handleChange = (e) => {
-        setForm({
-            ...form,
-            [e.target.name]: e.target.value
-        });
-    };
+    try {
 
-    const handleLogin = async (e) => {
-        e.preventDefault();
+      const response =
+              await api.post(
+                  "/auth/login",
+                  {
+                    email,
+                    password
+                  }
+              );
 
-        try {
-            const res = await API.post("/auth/login", form);
+      localStorage.setItem(
+          "token",
+          response.data.token
+      );
 
-            localStorage.setItem("token", res.data.token);
+      localStorage.setItem(
+          "role",
+          response.data.role
+      );
 
-            alert("Login Successful 🚀");
+      localStorage.setItem(
+          "email",
+          response.data.email
+      );
 
-            navigate("/");
-        } catch (err) {
-            setError("Invalid email or password");
-        }
-    };
+      alert("Login Successful");
 
-    return (
-        <div className="auth-container">
+    } catch(error) {
 
-            <form className="auth-box" onSubmit={handleLogin}>
+      alert("Invalid Credentials");
+    }
+  };
 
-                <h2>Login</h2>
+  return (
+      <form onSubmit={handleLogin}>
 
-                {error && <p className="error">{error}</p>}
+          <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e)=>
+                  setEmail(e.target.value)
+              }
+          />
 
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    value={form.email}
-                    onChange={handleChange}
-                    required
-                />
+          <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e)=>
+                  setPassword(e.target.value)
+              }
+          />
 
-                <input
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    value={form.password}
-                    onChange={handleChange}
-                    required
-                />
+          <button type="submit">
+              Login
+          </button>
 
-                <button type="submit">Login</button>
-
-                <p>
-                    New user?{" "}
-                    <span onClick={() => navigate("/register")}>
-                        Register here
-                    </span>
-                </p>
-
-            </form>
-
-        </div>
-    );
+      </form>
+  );
 }
 
 export default Login;

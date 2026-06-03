@@ -1,3 +1,4 @@
+import Navbar from "../components/Navbar"
 import "./Categories.css";
 import { Link } from "react-router-dom";
 
@@ -42,6 +43,8 @@ const categories = [
 
 function Categories() {
   return (
+    <>
+    
     <section  id="categories"className="categories-section">
       <div className="categories-container">
 
@@ -74,6 +77,7 @@ function Categories() {
 
       </div>
     </section>
+    </>
   );
 }
 

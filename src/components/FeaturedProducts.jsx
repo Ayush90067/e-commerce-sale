@@ -1,98 +1,131 @@
+import { useEffect, useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
+import Navbar from "../components/Navbar";
+import { CartContext } from "../context/CartContext";
+
 import "./FeaturedProducts.css";
 
-const products = [
-  {
-    id: 1,
-    name: "UltraTech Cement",
-    price: "₹420 / Bag",
-    image:
-      "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800",
-  },
-  {
-    id: 2,
-    name: "Red Bricks",
-    price: "₹8 / Piece",
-    image:
-      "https://images.unsplash.com/photo-1511818966892-d7d671e672a2?w=800",
-  },
-  {
-    id: 3,
-    name: "AAC Blocks",
-    price: "₹65 / Block",
-    image:
-      "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800",
-  },
-  {
-    id: 4,
-    name: "TMT Steel Bar",
-    price: "₹72 / Kg",
-    image:
-      "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800",
-  },
-  {
-    id: 5,
-    name: "Wall Putty",
-    price: "₹850 / Bag",
-    image:
-      "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800",
-  },
-  {
-    id: 6,
-    name: "RMC Concrete",
-    price: "₹5500 / m³",
-    image:
-      "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800",
-  },
-];
-
 function FeaturedProducts() {
-  return (
-    <section className="featured-section">
-      <div className="featured-container">
 
-        <h2 className="featured-title">
-          Featured <span>Products</span>
-        </h2>
+    const [products, setProducts] = useState([]);
 
-        <p className="featured-subtitle">
-          High-quality construction materials trusted by builders and contractors.
-        </p>
+    const navigate = useNavigate();
 
-        <div className="featured-grid">
-          {products.map((product) => (
-            <div className="product-card" key={product.id}>
+    const { addToCart } = useContext(CartContext);
 
-              <div className="product-image-box">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="product-image"
-                />
-              </div>
+    useEffect(() => {
 
-              <div className="product-content">
-                <h3>{product.name}</h3>
+        axios
+            .get("http://localhost:8080/products")
+            .then((response) => {
 
-                <div className="product-rating">
-                  ⭐⭐⭐⭐⭐
+                setProducts(response.data);
+
+            })
+            .catch((error) => {
+
+                console.log(error);
+
+            });
+
+    }, []);
+
+    const handleViewDetails = (id) => {
+
+        navigate(`/product/${id}`);
+
+    };
+
+    const handleAddToCart = (product) => {
+
+        addToCart({
+            ...product,
+            quantity: 1
+        });
+
+    };
+
+    return (
+        <>
+            <Navbar />
+
+            <section className="featured-products">
+
+                <div className="container">
+
+                    <h2 className="section-title">
+                        Featured <span>Products</span>
+                    </h2>
+
+                    <p className="section-subtitle">
+                        Explore our premium range of construction materials.
+                    </p>
+
+                    <div className="products-grid">
+
+                        {products.map((product) => (
+
+                            <div
+                                className="product-card"
+                                key={product.id}
+                            >
+
+                                <img
+                                    src={product.image}
+                                    alt={product.name}
+                                />
+
+                                <div className="product-info">
+
+                                    <h4>
+                                        {product.name}
+                                    </h4>
+
+                                    <p className="category">
+                                        {product.category}
+                                    </p>
+
+                                    <p className="price">
+                                        ₹{product.price}
+                                    </p>
+
+                                    <div className="product-buttons">
+
+                                        <button
+                                            className="cart-btn"
+                                            onClick={() =>
+                                                handleAddToCart(product)
+                                            }
+                                        >
+                                            Add To Cart
+                                        </button>
+                                      <button
+                                         className="details-btn"
+                                          onClick={() =>
+                                           navigate(`/product/${product.id}`)
+                                           }
+                                           >
+                                            View Details
+                                          </button>
+                                        
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        ))}
+
+                    </div>
+
                 </div>
 
-                <p className="product-price">
-                  {product.price}
-                </p>
-
-                <button className="cart-btn">
-                  Add To Cart
-                </button>
-              </div>
-
-            </div>
-          ))}
-        </div>
-
-      </div>
-    </section>
-  );
+            </section>
+        </>
+    );
 }
 
 export default FeaturedProducts;

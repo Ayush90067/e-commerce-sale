@@ -1,30 +1,35 @@
 import axios from "axios";
 
-const API = axios.create({
-
-    baseURL:"http://localhost:8080"
+const api = axios.create({
+  baseURL: "http://localhost:8080"
 });
 
-// GET PRODUCTS
+// PRODUCTS
 
-export const getProducts = () =>
-    API.get("/products");
+export const getProducts = () => {
+  return api.get("/products");
+};
 
-// ADD PRODUCT
+export const addProduct = (product) => {
+  return api.post("/products", product);
+};
 
-export const addProduct = (product) =>
-    API.post("/products", product);
+export const updateProduct = (id, product) => {
+  return api.put(`/products/${id}`, product);
+};
 
-// DELETE PRODUCT
+export const deleteProduct = (id) => {
+  return api.delete(`/products/${id}`);
+};
 
-export const deleteProduct = (id) =>
-    API.delete(`/products/${id}`);
+// AUTH
 
-// UPDATE PRODUCT
+export const loginUser = (credentials) => {
+  return api.post("/auth/login", credentials);
+};
 
-export const updateProduct = (
-    id,
-    product
-) => API.put(`/products/${id}`, product);
+export const registerUser = (user) => {
+  return api.post("/auth/register", user);
+};
 
-export default API;
+export default api;

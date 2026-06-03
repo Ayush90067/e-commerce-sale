@@ -99,25 +99,14 @@ function ProductSection() {
                     }
                 >
 
-                    <option value="All">
-                        All
-                    </option>
-
-                    <option value="Mobile">
-                        Mobile
-                    </option>
-
-                    <option value="Accessories">
-                        Accessories
-                    </option>
-
-                    <option value="Watch">
-                        Watch
-                    </option>
-
-                    <option value="Laptop">
-                        Laptop
-                    </option>
+                    <option value="All">All</option>
+<option value="Cement">Cement</option>
+<option value="Brick">Brick</option>
+<option value="TMT Bar">TMT Bar</option>
+<option value="AAC Block">AAC Block</option>
+<option value="Wall Putty">Wall Putty</option>
+<option value="POP">POP</option>
+<option value="RMC">RMC</option>
 
                 </select>
 

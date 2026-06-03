@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 import Navbar from "../components/Navbar";
 import "./Cart.css";
-
+import { Link } from "react-router-dom";
 function Cart() {
 
     const {
@@ -95,7 +95,13 @@ function Cart() {
                 <h2 className="total-price">
                     Total : ₹ {totalPrice}
                 </h2>
+                <Link to="/checkout">
 
+    <button className="checkout-btn">
+        Proceed To Checkout
+    </button>
+
+</Link>
             </div>
 
         </div>

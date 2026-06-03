@@ -1,46 +1,97 @@
 import { Link } from "react-router-dom";
-import { FaShoppingCart } from "react-icons/fa";
 import "./Navbar.css";
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
+import { FaShoppingCart, FaWhatsapp } from "react-icons/fa";
 
 function Navbar() {
 
     const { cartItems } = useContext(CartContext);
 
+    const email = localStorage.getItem("email");
+
+    const logout = () => {
+
+        localStorage.removeItem("token");
+        localStorage.removeItem("email");
+        localStorage.removeItem("role");
+
+        window.location.href = "/";
+    };
+
     return (
         <nav className="navbar">
 
             <div className="logo">
-                MaKan
+                <Link to="/">MaKan</Link>
             </div>
 
             <ul className="nav-links">
-                <Link to="/products">
-                 <li>Shop</li>
-                 </Link>
-                <a href="#categories">
-                <li>Service</li>
-                </a>
-                <Link to="/login">
-                    <li>Login</li>
+
+                <Link to="/">
+                    <li>Home</li>
                 </Link>
-                
+
+                <Link to="/products">
+                    <li>Shop</li>
+                </Link>
+
+                <a href="/categories">
+                    <li>Service</li>
+                </a>
+
+                <Link to="/about">
+                    <li>About Us</li>
+                </Link>
+
+                {email ? (
+                    <>
+                        <li className="user-name">
+                            👤 {email}
+                        </li>
+
+                        <li
+                            className="logout-btn"
+                            onClick={logout}
+                        >
+                            Logout
+                        </li>
+                    </>
+                ) : (
+                    <Link to="/login">
+                        <li>Login</li>
+                    </Link>
+                )}
+
             </ul>
 
-           <Link to="/cart">
-            <div className="cart-icon">
+            <div className="navbar-right">
 
-                <FaShoppingCart />
+                <a
+                    href="https://wa.me/9006791742"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="whatsapp-icon"
+                >
+                    <FaWhatsapp />
+                </a>
 
-                <span className="cart-count">
-                    {cartItems.length}
-                </span>
+                <Link to="/cart">
+                    <div className="cart-icon">
+
+                        <FaShoppingCart />
+
+                        <span className="cart-count">
+                            {cartItems.length}
+                        </span>
+
+                    </div>
+                </Link>
 
             </div>
-        </Link>
+
         </nav>
-    )
+    );
 }
 
 export default Navbar;
