@@ -40,12 +40,27 @@ function FeaturedProducts() {
 
     const handleAddToCart = (product) => {
 
-        addToCart({
-            ...product,
-            quantity: 1
-        });
+    const token =
+        localStorage.getItem("token");
 
-    };
+    if (!token) {
+
+        alert(
+            "Please Login First To Add Products To Cart"
+        );
+
+        navigate("/login");
+
+        return;
+    }
+
+    addToCart({
+        ...product,
+        quantity: 1
+    });
+
+    alert("Product Added To Cart");
+};
 
     return (
         <>

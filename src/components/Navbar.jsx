@@ -6,92 +6,134 @@ import { FaShoppingCart, FaWhatsapp } from "react-icons/fa";
 
 function Navbar() {
 
-    const { cartItems } = useContext(CartContext);
 
-    const email = localStorage.getItem("email");
+const { cartItems } =
+    useContext(CartContext);
 
-    const logout = () => {
+const userName =
+    localStorage.getItem("name");
 
-        localStorage.removeItem("token");
-        localStorage.removeItem("email");
-        localStorage.removeItem("role");
+const email =
+    localStorage.getItem("email");
 
-        window.location.href = "/";
-    };
+const role =
+    localStorage.getItem("role");
 
-    return (
-        <nav className="navbar">
+const logout = () => {
 
-            <div className="logo">
-                <Link to="/">MaKan</Link>
-            </div>
+    localStorage.removeItem("token");
+    localStorage.removeItem("email");
+    localStorage.removeItem("role");
+    localStorage.removeItem("name");
 
-            <ul className="nav-links">
+    alert("Logged Out Successfully");
 
-                <Link to="/">
-                    <li>Home</li>
+    window.location.href = "/";
+};
+
+return (
+
+    <nav className="navbar">
+
+        <div className="logo">
+            <Link to="/">
+                MaKan
+            </Link>
+        </div>
+
+        <ul className="nav-links">
+
+            <Link to="/">
+                <li>Home</li>
+            </Link>
+
+            <Link to="/products">
+                <li>Shop</li>
+            </Link>
+
+            <Link to="/categories">
+                <li>Services</li>
+            </Link>
+
+            <Link to="/about">
+                <li>About Us</li>
+            </Link>
+
+            {email && (
+                <Link to="/my-orders">
+                    <li>My Orders</li>
+                </Link>
+            )}
+
+            {role === "ADMIN" && (
+                <Link to="/admin">
+                    <li>Admin</li>
+                </Link>
+            )}
+            {role === "ADMIN" && (
+
+    <Link to="/admin/orders">
+        <li>Orders</li>
+    </Link>
+
+)}
+
+            {email ? (
+
+                <>
+                    <li className="user-name">
+                        👤 {userName || email}
+                    </li>
+
+                    <li
+                        className="logout-btn"
+                        onClick={logout}
+                    >
+                        Logout
+                    </li>
+                </>
+
+            ) : (
+
+                <Link to="/login">
+                    <li>Login</li>
                 </Link>
 
-                <Link to="/products">
-                    <li>Shop</li>
-                </Link>
+            )}
 
-                <a href="/categories">
-                    <li>Service</li>
-                </a>
+        </ul>
 
-                <Link to="/about">
-                    <li>About Us</li>
-                </Link>
+        <div className="navbar-right">
 
-                {email ? (
-                    <>
-                        <li className="user-name">
-                            👤 {email}
-                        </li>
+            <a
+                href="https://wa.me/9006791742"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="whatsapp-icon"
+            >
+                <FaWhatsapp />
+            </a>
 
-                        <li
-                            className="logout-btn"
-                            onClick={logout}
-                        >
-                            Logout
-                        </li>
-                    </>
-                ) : (
-                    <Link to="/login">
-                        <li>Login</li>
-                    </Link>
-                )}
+            <Link to="/cart">
 
-            </ul>
+                <div className="cart-icon">
 
-            <div className="navbar-right">
+                    <FaShoppingCart />
 
-                <a
-                    href="https://wa.me/9006791742"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="whatsapp-icon"
-                >
-                    <FaWhatsapp />
-                </a>
+                    <span className="cart-count">
+                        {cartItems.length}
+                    </span>
 
-                <Link to="/cart">
-                    <div className="cart-icon">
+                </div>
 
-                        <FaShoppingCart />
+            </Link>
 
-                        <span className="cart-count">
-                            {cartItems.length}
-                        </span>
+        </div>
 
-                    </div>
-                </Link>
+    </nav>
+);
 
-            </div>
 
-        </nav>
-    );
 }
 
 export default Navbar;

@@ -1,84 +1,115 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import API from "../services/api";
-import "./Auth.css";
+import { Link, useNavigate } from "react-router-dom";
+import api from "../services/api";
+import "./Register.css";
 
 function Register() {
 
     const navigate = useNavigate();
 
-    const [form, setForm] = useState({
+    const [user, setUser] = useState({
         name: "",
         email: "",
         password: ""
     });
 
     const handleChange = (e) => {
-        setForm({
-            ...form,
-            [e.target.name]: e.target.value
+
+        setUser({
+            ...user,
+            [e.target.name]:
+                e.target.value
         });
     };
 
-    const handleRegister = async (e) => {
+    const handleSubmit = async (e) => {
+
         e.preventDefault();
 
         try {
-            await API.post("/auth/register", form);
 
-            alert("Registered Successfully 🚀");
+            await api.post(
+                "/auth/register",
+                user
+            );
+
+            alert(
+                "Registration Successful"
+            );
 
             navigate("/login");
 
-        } catch (err) {
-            alert("Registration failed");
+        } catch {
+
+            alert(
+                "Registration Failed"
+            );
         }
     };
 
     return (
-        <div className="auth-container">
 
-            <form className="auth-box" onSubmit={handleRegister}>
+        <div className="register-page">
 
-                <h2>Register</h2>
+            <div className="register-container">
 
-                <input
-                    type="text"
-                    name="name"
-                    placeholder="Name"
-                    value={form.name}
-                    onChange={handleChange}
-                    required
-                />
+                <div className="register-logo">
+                    🏗️ MaKan
+                </div>
 
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    value={form.email}
-                    onChange={handleChange}
-                    required
-                />
+                <h2>
+                    Create Account
+                </h2>
 
-                <input
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    value={form.password}
-                    onChange={handleChange}
-                    required
-                />
+                <form
+                    className="register-form"
+                    onSubmit={handleSubmit}
+                >
 
-                <button type="submit">Register</button>
+                    <input
+                        type="text"
+                        name="name"
+                        placeholder="Full Name"
+                        onChange={handleChange}
+                        required
+                    />
 
-                <p>
-                    Already have account?{" "}
-                    <span onClick={() => navigate("/login")}>
-                        Login here
-                    </span>
-                </p>
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="Email"
+                        onChange={handleChange}
+                        required
+                    />
 
-            </form>
+                    <input
+                        type="password"
+                        name="password"
+                        placeholder="Password"
+                        onChange={handleChange}
+                        required
+                    />
+
+                    <button
+                        type="submit"
+                        className="register-btn"
+                    >
+                        Register
+                    </button>
+
+                </form>
+
+                <div className="register-footer">
+
+                    Already have account?
+
+                    <Link to="/login">
+                        Login
+                    </Link>
+
+                </div>
+
+            </div>
 
         </div>
     );

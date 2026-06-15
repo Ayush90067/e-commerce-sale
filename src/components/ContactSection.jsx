@@ -1,82 +1,193 @@
-
+import { useState } from "react";
 import "./ContactSection.css";
 
 function ContactSection() {
-  return (
 
-    
-    <section id="contact" className="contact-section">
+    const [formData, setFormData] = useState({
 
-      <div className="contact-container">
+        name: "",
+        email: "",
+        phone: "",
+        material: "",
+        message: ""
 
-        <div className="contact-info">
-          <h2>
-            Request a <span>Free Quote</span>
-          </h2>
+    });
 
-          <p>
-            Need construction materials for your project?
-            Contact us today and get the best prices on
-            Cement, Bricks, TMT Bars, AAC Blocks,
-            Wall Putty, and more.
-          </p>
+    const handleChange = (e) => {
 
-          <div className="contact-details">
-            <p>📍 Sherghati,Gaya, Bihar</p>
-            <p>📞 +91 9006791742</p>
-            <p>✉ support@makan.com</p>
-          </div>
-        </div>
+        setFormData({
 
-        <div className="contact-form-container">
+            ...formData,
 
-          <form className="contact-form">
+            [e.target.name]:
+                e.target.value
 
-            <input
-              type="text"
-              placeholder="Your Name"
-              required
-            />
+        });
+    };
 
-            <input
-              type="email"
-              placeholder="Email Address"
-              required
-            />
+    const handleQuote = (e) => {
 
-            <input
-              type="tel"
-              placeholder="Phone Number"
-              required
-            />
+        e.preventDefault();
 
-            <select>
-              <option>Select Material</option>
-              <option>Cement</option>
-              <option>Bricks</option>
-              <option>TMT Bars</option>
-              <option>AAC Blocks</option>
-              <option>Wall Putty</option>
-              <option>RMC</option>
-            </select>
+        const whatsappMessage =
+            encodeURIComponent(
 
-            <textarea
-              rows="5"
-              placeholder="Fill Free to Ask Your Query ...  Or Send FeedBack ..."
-            ></textarea>
+`Hello MaKan,
 
-            <button type="submit">
-              Request Quote
-            </button>
+Name: ${formData.name}
 
-          </form>
+Email: ${formData.email}
 
-        </div>
+Phone: ${formData.phone}
 
-      </div>
+Material Required: ${formData.material}
 
-    </section>
-  );
+Query:
+${formData.message}`
+            );
+
+        window.open(
+
+            `https://wa.me/919006791742?text=${whatsappMessage}`,
+
+            "_blank"
+        );
+    };
+
+    return (
+
+        <section
+            id="contact"
+            className="contact-section"
+        >
+
+            <div className="contact-container">
+
+                <div className="contact-info">
+
+                    <h2>
+                        Request a <span>Free Quote</span>
+                    </h2>
+
+                    <p>
+                        Need construction materials for your project?
+                        Contact us today and get the best prices on
+                        Cement, Bricks, TMT Bars, AAC Blocks,
+                        Wall Putty, and more.
+                    </p>
+
+                    <div className="contact-details">
+
+                        <p>
+                            📍 Sherghati, Gaya, Bihar
+                        </p>
+
+                        <p>
+                            📞 +91 9006791742
+                        </p>
+
+                        <p>
+                            ✉ support@makan.com
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div className="contact-form-container">
+
+                    <form
+                        className="contact-form"
+                        onSubmit={handleQuote}
+                    >
+
+                        <input
+                            type="text"
+                            name="name"
+                            placeholder="Your Name"
+                            value={formData.name}
+                            onChange={handleChange}
+                            required
+                        />
+
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="Email Address"
+                            value={formData.email}
+                            onChange={handleChange}
+                            required
+                        />
+
+                        <input
+                            type="tel"
+                            name="phone"
+                            placeholder="Phone Number"
+                            value={formData.phone}
+                            onChange={handleChange}
+                            required
+                        />
+
+                        <select
+                            name="material"
+                            value={formData.material}
+                            onChange={handleChange}
+                            required
+                        >
+
+                            <option value="">
+                                Select Material
+                            </option>
+
+                            <option value="Cement">
+                                Cement
+                            </option>
+
+                            <option value="Bricks">
+                                Bricks
+                            </option>
+
+                            <option value="TMT Bars">
+                                TMT Bars
+                            </option>
+
+                            <option value="AAC Blocks">
+                                AAC Blocks
+                            </option>
+
+                            <option value="Wall Putty">
+                                Wall Putty
+                            </option>
+
+                            <option value="RMC">
+                                RMC
+                            </option>
+
+                        </select>
+
+                        <textarea
+                            rows="5"
+                            name="message"
+                            value={formData.message}
+                            onChange={handleChange}
+                            placeholder="Ask your query or request a quotation..."
+                            required
+                        />
+
+                        <button
+                            type="submit"
+                        >
+                            Request Quote On WhatsApp
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </section>
+    );
 }
 
 export default ContactSection;
