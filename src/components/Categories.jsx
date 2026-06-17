@@ -1,19 +1,20 @@
 import Navbar from "../components/Navbar"
 import "./Categories.css";
 import { Link } from "react-router-dom";
-
+import img1 from "../assets/istockphoto-622800884-1024x1024.jpg"
+import img2 from "../assets/ACC_block.jpg"
+import img3 from "../assets/cement.jpg"
 const categories = [
   {
     id: 1,
     name: "Bricks",
-    image:
-      "https://images.unsplash.com/photo-1511818966892-d7d671e672a2?w=800",
+    image: img1,
+    
   },
   {
     id: 2,
     name: "Cement",
-    image:
-      "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800",
+    image:img3,
   },
   {
     id: 3,
@@ -36,8 +37,7 @@ const categories = [
   {
     id: 6,
     name: "AAC Blocks",
-    image:
-      "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800",
+    image: img2,
   },
 ];
 
@@ -49,7 +49,7 @@ function Categories() {
       <div className="categories-container">
 
         <h2 className="categories-title">
-          Our <span>Categories</span>
+        <Link to="/"> Our <span>Categories</span> </Link>
         </h2>
 
         <p className="categories-subtitle">

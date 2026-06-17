@@ -49,7 +49,7 @@ function Footer() {
 
           <p>📍 Sherghati,Gaya ji, Bihar</p>
           <p>📞 +91 9006791742</p>
-          <p>✉ support@MaKan.com</p>
+          <p>✉ ayushraj90067@gmail.com</p>
         </div>
 
       </div>

@@ -296,8 +296,8 @@ return (
                         AAC Block
                     </option>
 
-                    <option value="Wall Putty">
-                        Wall Putty
+                    <option value="Wall Paint">
+                        Wall Paint
                     </option>
 
                     <option value="POP">

@@ -87,7 +87,7 @@ ${formData.message}`
                         </p>
 
                         <p>
-                            ✉ support@makan.com
+                            ✉ ayushraj90067@gmail.com
                         </p>
 
                     </div>

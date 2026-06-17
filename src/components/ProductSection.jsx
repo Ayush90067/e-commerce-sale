@@ -104,7 +104,7 @@ function ProductSection() {
 <option value="Brick">Brick</option>
 <option value="TMT Bar">TMT Bar</option>
 <option value="AAC Block">AAC Block</option>
-<option value="Wall Putty">Wall Putty</option>
+<option value="Wall Paint">Wall Paint</option>
 <option value="POP">POP</option>
 <option value="RMC">RMC</option>
 
