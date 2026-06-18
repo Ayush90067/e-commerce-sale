@@ -18,7 +18,7 @@ function FeaturedProducts() {
     useEffect(() => {
 
         axios
-            .get("http://localhost:8080/products")
+            .get("https://e-commerce-sale-backend-production.up.railway.app/products")
             .then((response) => {
 
                 setProducts(response.data);

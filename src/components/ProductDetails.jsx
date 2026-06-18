@@ -20,7 +20,7 @@ function ProductDetails() {
     useEffect(() => {
 
         axios
-            .get(`http://localhost:8080/products/${id}`)
+            .get(`https://e-commerce-sale-backend-production.up.railway.app/products/${id}`)
             .then((response) => {
 
                 setProduct(response.data);
