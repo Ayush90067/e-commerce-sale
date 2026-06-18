@@ -106,7 +106,7 @@ return (
         <div className="navbar-right">
 
             <a
-                href="https://wa.me/9006791742"
+                href="https://wa.me/+91 9006791742"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="whatsapp-icon"
