@@ -34,7 +34,7 @@ function FeaturedProducts() {
 
     const handleViewDetails = (id) => {
 
-        navigate(`/product/${id}`);
+        navigate(`/products/${id}`);
 
     };
 
